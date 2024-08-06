@@ -1,0 +1,17 @@
+# idea common
+.idea
+.DS_Store
+*.iml
+.idea_modules/
+
+log
+logs
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
