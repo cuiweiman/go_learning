@@ -127,7 +127,7 @@ func main() {
 	}
 
 	/**
-	拦截器
+	拦截器 MyHandler, 应用在 ginServer.GET("/order", MyHandler(), func(context *gin.Context) {}）
 	*/
 
 	// 启动服务
