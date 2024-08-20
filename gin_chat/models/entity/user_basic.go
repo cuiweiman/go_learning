@@ -38,6 +38,10 @@ func CreateUser(basic *UserBasic) *gorm.DB {
 	return utils.DB.Create(basic)
 }
 
+func UpdateUser(basic *UserBasic) *gorm.DB {
+	return utils.DB.Updates(basic)
+}
+
 func GetUser(id int) *UserBasic {
 	var user UserBasic = UserBasic{}
 	// 先查询第一条记录 保存在 user 变量中, 等价于 select where id = #{id} limit 1

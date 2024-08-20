@@ -60,6 +60,36 @@ func CreateUserBasic(ctx *gin.Context) {
 	})
 }
 
+// UpdateUserBasic
+// @Tags 用户管理
+// @Summary 更新手机号码和邮箱
+// @Description 更新手机号码和邮箱
+// @Produce json
+// @Param id query int true "用户ID"
+// @Param phone query string false "手机号码"
+// @Param email query string false "电子邮箱"
+// @Success 200 {string} json{"code","msg","data"}
+// @Failure 500 {string} json{"code","msg","data"}
+// @Router /user [put]
+func UpdateUserBasic(ctx *gin.Context) {
+	var idParam = ctx.Query("id")
+	userId, _ := strconv.Atoi(idParam)
+	userBasic := entity.GetUser(userId)
+	if userBasic.ID == 0 {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"msg": "用户信息不存在",
+		})
+	}
+	userBasic.Phone = ctx.Query("phone")
+	userBasic.Email = ctx.Query("email")
+
+	entity.UpdateUser(userBasic)
+	ctx.JSON(http.StatusOK, gin.H{
+		"msg":  "OK",
+		"data": userBasic.ID,
+	})
+}
+
 // DeleteUser
 // @Tags 用户管理
 // @Summary 删除用户
